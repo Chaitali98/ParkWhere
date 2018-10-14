@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ParkWhere</string>
     <string name="title_activity_maps">Maps</string>
+    <string name="title_activity_maps2">ExitMap</string>
 </resources>

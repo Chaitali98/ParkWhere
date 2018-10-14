@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "656147857331",
+    "firebase_url": "https://parkwhere-96d29.firebaseio.com",
+    "project_id": "parkwhere-96d29",
+    "storage_bucket": "parkwhere-96d29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656147857331:android:fb51e060216bb76f",
+        "android_client_info": {
+          "package_name": "com.example.parkwhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656147857331-6d7csqn5b47euvsbmm58un40fvi5qbbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.parkwhere",
+            "certificate_hash": "b32779582e10aff166350dc30188f3c3844c5c8c"
+          }
+        },
+        {
+          "client_id": "656147857331-eb0l7hj8ldcfstlvnph2moc8srfu7kpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnuWQbLwzvgUqwVDZkz2LnLAoidojatB4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656147857331-eb0l7hj8ldcfstlvnph2moc8srfu7kpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

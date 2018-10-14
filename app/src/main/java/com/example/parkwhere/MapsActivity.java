@@ -1,6 +1,7 @@
 package com.example.parkwhere;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Parcelable;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -37,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final String TAG = MapsActivity.class.getSimpleName();
     private static final float DEFAULT_ZOOM = 15;
+    private static final String USERINFO_MSG = "User info";
 
     private GoogleMap mMap;
     private Location mLastKnownLocation;
@@ -46,6 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private PlaceDetectionClient mPlaceDetectionClient;
     private LatLng mDefaultLocation = new LatLng(18.5155, 73.815);
+    private User user = new User("FirstName" , "LastName");
+    private LatLng location;
 
     public MapsActivity(){}
     public MapsActivity(CameraPosition mCameraPosition, GeoDataClient mGeoDataClient, PlaceDetectionClient mPlaceDetectionClient) {
@@ -99,15 +104,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.option_get_place) {
-            showCurrentPlace();
-        }
+
         return true;
     }
 
     private void showCurrentPlace() {
     }
 
+    public void ParkMe(View view)
+    {
+        Intent intent = new Intent(this ,MapsActivity2.class );
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("user" , user);
+         location = new LatLng(mLastKnownLocation.getLatitude() , mLastKnownLocation.getLongitude());
+        bundle.putParcelable("Location" , location);
+        //intent.putExtra(USERINFO_MSG , user.getid());
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     /**
      * Manipulates the map once available.
@@ -169,9 +183,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (task.isSuccessful()) {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            location = new LatLng(mLastKnownLocation.getLatitude(),
+                                    mLastKnownLocation.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location
+                                    , DEFAULT_ZOOM));
+
+                           mMap.addMarker(new MarkerOptions().position(location).title("this is MLastLocation"));
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
